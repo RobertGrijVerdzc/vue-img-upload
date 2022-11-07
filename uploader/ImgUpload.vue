@@ -52,9 +52,10 @@
 
 <script setup>
   import { ref, onMounted, watch } from "vue";
-  import { Axios } from "axios";
+  const axios = require("axios");
 
   const emmits = defineEmits(["added-media", "saved-media"]);
+
   const props = defineProps({
     media_server: {
       type: String,
@@ -120,14 +121,16 @@
   };
 
   onMounted(() => {
-    axios.get(props.media_server).then((response) => {
-      if (response.data.media[0].name != null) {
-        imgUp.value = response.data.media;
-      } else {
-        imgUp.value = [];
-      }
-      media_emit();
-    });
+    if (props.media_server) {
+      axios.get(props.media_server).then((response) => {
+        if (response.data.media[0].name != null) {
+          imgUp.value = response.data.media;
+        } else {
+          imgUp.value = [];
+        }
+        media_emit();
+      });
+    }
   });
 </script>
 
