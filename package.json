@@ -1,6 +1,6 @@
 {
   "name": "vue-uploader-img",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Upload multiple images",
   "main": "index.js",
   "scripts": {
