@@ -52,7 +52,11 @@
 
 <script setup>
   import { ref, onMounted, watch } from "vue";
+<<<<<<< HEAD
   const axios = require("axios");
+=======
+  import axios from 'axios';
+>>>>>>> 2e83b5e9d8786c49926521ab5ef9e7a77232c3fd
 
   const emmits = defineEmits(["added-media", "saved-media"]);
 
