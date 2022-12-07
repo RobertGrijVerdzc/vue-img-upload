@@ -35,10 +35,9 @@
         v-for="(image, index) in imgUp"
         :key="index"
         class="image-container image-margin">
-        <a :href="media_file_path + '/' + image.path">
+        <a :href="media_file_path + '/' + image.name" target="_blank">
           <img
-            :src="media_file_path + '/' + image.path"
-            alt=""
+            :src="media_file_path + '/' + image.name"
             class="images-preview" />
         </a>
         <button
@@ -84,7 +83,7 @@
       if (value) {
         imgUp.value = [];
         axios.get(value).then((response) => {
-          if (response.data.media[0].path) {
+          if (response.data.media[0].name) {
             imgUp.value = response.data.media;
           } else {
             imgUp.value = [];
@@ -167,15 +166,14 @@
   .image-container {
     display: inline-table !important;
     height: 90px !important;
-    width: 140px !important;
     display: flex !important;
   }
   .images-preview {
     border-radius: 5px !important;
     border: 1px solid #ccc !important;
     display: inline-block !important;
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
     padding-top: -14px !important;
     transition: filter 0.1s linear;
   }
