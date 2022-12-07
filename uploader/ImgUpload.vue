@@ -35,10 +35,12 @@
         v-for="(image, index) in imgUp"
         :key="index"
         class="image-container image-margin">
-        <img
-          :src="media_file_path + '/' + image.name"
-          alt=""
-          class="images-preview" />
+        <a :href="media_file_path + '/' + image.path">
+          <img
+            :src="media_file_path + '/' + image.path"
+            alt=""
+            class="images-preview" />
+        </a>
         <button
           @click="remove_saved_media(index)"
           class="close-btn"
@@ -52,11 +54,7 @@
 
 <script setup>
   import { ref, onMounted, watch } from "vue";
-<<<<<<< HEAD
-  const axios = require("axios");
-=======
-  import axios from 'axios';
->>>>>>> 2e83b5e9d8786c49926521ab5ef9e7a77232c3fd
+  import axios from "axios";
 
   const emmits = defineEmits(["added-media", "saved-media"]);
 
@@ -86,7 +84,7 @@
       if (value) {
         imgUp.value = [];
         axios.get(value).then((response) => {
-          if (response.data.media[0].name != null) {
+          if (response.data.media[0].path) {
             imgUp.value = response.data.media;
           } else {
             imgUp.value = [];
@@ -176,8 +174,8 @@
     border-radius: 5px !important;
     border: 1px solid #ccc !important;
     display: inline-block !important;
-    width: 140px !important;
-    height: 88px !important;
+    width: auto;
+    height: auto;
     padding-top: -14px !important;
     transition: filter 0.1s linear;
   }
